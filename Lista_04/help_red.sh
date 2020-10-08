@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "O redirecionador > é utilizado para redirecionar a saída padrão de um comando para um arquivo, sobrescrevendo o arquivo em questão"
+echo "Ex: cat exemplo.txt > saida_exemplo.txt"
+echo "O redirecionador >> é utilizado para redirecionar a saída padrão de um comando para um arquivo, inserindo esta saída ao final do arquivo."
+echo "Ex: cat exemplo.txt >> sainda_exemplo.txt"
+echo "O redirecionador 2> é utilizado para redirecionar a saída de erros a um arquivo, sobrescrevendo o arquivo em questão."
+echo "Ex: ls pwd 2> erros_atuais.txt"
+echo "O redirecionador 2>> é utilizado para redirecionar a saída de erros ao final de um arquivo."
+echo "Ex: ls pwd 2>> erros_atuais.txt"
+echo "O redirecionador &> redireciona tanto a saída de padrão, quanto a saída de erros para um arquivo, sobrescrevendo o arquivo em questão."
+echo "Ex: ls pwd &> padrao&erros.txt"
+echo "O redirecionador &>> redireciona a saída de padrão e de erros ao final de um arquivo."
+echo "ls pwd &>> padrao&erros.txt"
+echo "O redirecionador < transforma o conteúdo de um arquivo em uma entrada padrão para um comando."
+echo "cat < ex_de_arquivo"
+echo "O redirecionador << recebe arquivos como entrada padrão para um comando e só interrompe a recepção desses arquivos, quando for digitado o parâmetro estabelecido."
+echo "Ex wc -l << stp"
+echo "O redirecionador <<< recebe uma string como entrada para um comando"
+echo "Ex echo <<< isto é um echo"
+
