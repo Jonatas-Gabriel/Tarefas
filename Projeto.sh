@@ -18,11 +18,10 @@ function arquivo (){
 
 
 while true; do
-    echo "Bem-vindo ao Projeto de Shell Script 2020.2"
+	echo "Bem-vindo ao Projeto de Shell Script 2020.2"
 	echo "Você está dentro do Diretório $(pwd)"
 	echo "Existe essa lista de arquivos: "
 	for i in $(ls); do
-		
 		if [ -f $i ]; then
 			echo " $i"
 		fi
@@ -59,8 +58,8 @@ while true; do
 	echo "20 - Sair do menu"
 	echo "###########################"
 	read -p "Qual procedimento você deseja executar? Por favor digite a opção abaixo: " opcao
-	
-	if [ $opcao == "1" ]
+
+	if [ $opcao == "1" ]; then
 		diretorio
 		read -p "Qual diretório que deseja entrar? " diretorio
 		if test -d $diretorio; then
@@ -69,76 +68,78 @@ while true; do
 			echo "O diretório não encontrado ou não existe"
 			sleep 2
 		fi
-	
+	fi
+
 	if [ $opcao == "2" ]; then
-		arquivo
 		diretorio
 		if [ $(pwd) != "/" ]; then
 			cd ..
 		fi
-        else
+	else
 		    echo "Último diretório"
 		    sleep 2
 	fi	
 	
-	if [ $opcao == "3"]; then
+	if [ $opcao == "3" ]; then
 		arquivo
 		read -p "Extensão que deseja buscada: " extensao
-		if test -f $extensao; then
-			ls*$extensao
-		fi
+		ls *.$extensao
         else
-            echo "Não foi encontrado nenhuma extensão nesse diretório."
-            sleep 2
+            	echo "Não foi encontrado nenhuma extensão nesse diretório."
+		sleep 2
+	fi
 
-
-	if [ $opcao == "4" ]:
+	if [ $opcao == "4" ]; then
 		arquivo
         	read -p "Qual arquivo você deseja editar? " edicao
 		if test -f $edicao; then
            		read -p "Prefere editor nano ou vim? " editor
-            		if [editor == "nano"];then  
+            		if [ editor == "nano" ];then  
                 		nano $edicao
             		else
                 		vim $edicao
+			fi
+		fi
 		echo "O arquivo não foi encontrado ou não existe."
             	sleep 2
         fi
 
-	if [ $opcao == "5" ]:
+	if [ $opcao == "5" ]; then
 		arquivo
 		read -p "O arquivo a ser pré-visualizado: " previsao
 		if test -f $previsao; then
-			head $previsao 
-			echo "####################################################################"
-            		tail $previsao
-		else
-		    	echo "O arquivo não foi encontrado ou não existe."
+			head $previsao
+			echo "###########################"
+			tail $previsao
+		fi	
+	else
+		echo "O arquivo não foi encontrado ou não existe."
+		sleep 2
+	fi
 
-			sleep 2
-	 fi
-
-    	if [ $opcao == "6" ]:
-        	arquivo
+  	if [ $opcao == "6" ]; then
+	       	arquivo
 		read -p "Escreva qual arquivo você deseja que seja removido na máquina, lembre-se que após deletar esse arquivo não será mais possível recuperar o mesmo, caso não tenha feito o backup. " deleta_arquivo
 		if test -f $deletar_arquivo; then
 			rm -r $deletar_arquivo
 		else
 		    	echo "O arquivo que você deseja deletar não foi encontrado ou não existe."
             		sleep 2
-	 fi
+	 	fi
+	fi
 
-    	if [ $opcao == "7" ]:
-        	diretorio
+   	if [ $opcao == "7" ]; then
+	       	diretorio
 		read -p "Escreva qual diretório você deseja que seja removido na máquina, lembre-se que após deletar esse diretório não será mais possível recuperar o mesmo, caso não tenha feito o backup. "
 		if test -d $deletar_diretorio; then
 			rmdir $deletar_diretorio
 		else
 		    	echo "O Diretório que você deseja deletar não foi encontrado ou não existe."
-			 sleep 2
+			sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "8" ]:
+	if [ $opcao == "8" ]; then
         	arquivo
 		read -p "Qual arquivo você deseja que faça o backup? " backup
 		if test -f $backup_arquivo; then
@@ -147,9 +148,10 @@ while true; do
 		else
 			echo "O backup não realizado, ocorreu algum erro durante a operação."
                 	sleep 2
+		fi
 	fi
 
-	if [ $opcao == "9" ]:
+	if [ $opcao == "9" ]; then
         	diretorio
         	sudo apt-get install rsync
 		read -p "Digite o nome do diretório que deseja fazer o backup. " backup_diretorio
@@ -159,9 +161,10 @@ while true; do
 		else
 		    	echo "O backup não realizado, ocorreu algum erro durante a operação."
             		sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "10" ]:
+   	if [ $opcao == "10" ]; then
         	arquivo
 		read -p "Qual arquivo você deseja ler? " arquivo_cat
 		if test -f $arquivo_cat; then
@@ -169,42 +172,46 @@ while true; do
 		else
 		    	echo "O arquivo não foi encontrado ou não existe."
             		sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "11" ]:
-        	diretorio
-        	arquivo
-        	apt-get install tree
+	if [ $opcao == "11" ]; then
+       		diretorio
+	       	arquivo
+	       	apt-get install tree
 		read -p "Qual diretório você deseja ver em forma de árvore? " diretorio_tree
 		if test -f $diretorio_tree; then
             		tree /$diretorio_tree
 		else
 		    	echo "O diretório não foi encontrado ou não existe."
-            		sleep 2
+           		sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "12" ]:
-        	arquivo
+   	if [ $opcao == "12" ]; then
+	       	arquivo
 		read -p "Qual arquivo você deseja ver a quantidade de bytes? " arquivo_bytes
 		if test -f $arquivo_bytes; then
             		wc -c $arquivo_bytes
 		else
 		    	echo "O arquivo não foi encontrado ou não existe."
             		sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "13" ]:
+	if [ $opcao == "13" ]; then
         	arquivo
-        	apt-get install zip
+	       	apt-get install zip
 		read -p "Qual arquivo você deseja compactar? " arquivo_compact
 		if test -f $arquivo_compact; then
             		zip $arquivo_compact
 		else
 		    	echo "O arquivo não foi encontrado ou não existe."
             		sleep 2
+		fi
 	fi
 
-    	if [ $opcao == "14" ]:
+    	if [ $opcao == "14" ]; then
         	diretorio
         	arquivo
         	apt-get install zip
@@ -216,9 +223,10 @@ while true; do
 		else
 			echo "O diretório não foi encontrado ou não existe."
             		sleep 2
+		fi
 	fi
 
-	if [ $opcao == "15" ]:
+	if [ $opcao == "15" ]; then
         	arquivo
 		read -p "Qual arquivo deseja visualizar por páginas? " arquivo_pagina
 		if test -f $arquivo_pagina; then
@@ -226,19 +234,23 @@ while true; do
 		else
 		    	echo "O arquivo não foi encontrado ou não existe."
             		sleep 2
+		fi
 	fi
-    	if [ $opcao == "16" ]:
+
+    	if [ $opcao == "16" ]; then
         	arquivo
 		read -p "Qual nome do arquivo que deseja criar? " $arquivo_touch
 		if test -f $arquivo_touch; then
             		touch $arquivo_touch
+		fi
 	fi
 
-    	if [ $opcao == "17" ]:
+    	if [ $opcao == "17" ];then
         	diretorio
 		read -p "Qual nome do diretório que deseja criar? " $arquivo_mkdir
 		if test -f $arquivo_mkdir; then
             		mkdir $arquivo_mkdir
+		fi
 	fi
 
 	if [ $opcao == "18" ]; then
@@ -251,5 +263,4 @@ while true; do
     	if [ $opcao == "20" ];then
 		exit 1
     	fi
-	
 done
